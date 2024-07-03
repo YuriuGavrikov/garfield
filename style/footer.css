@@ -1,0 +1,11 @@
+.footer {
+  display: flex;
+  justify-content: center;
+  height: 30px;
+  width: 100%;
+}
+.views {
+  width: 150px;
+  background-color: #fff;
+  text-align: center;
+}

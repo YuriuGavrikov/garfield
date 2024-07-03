@@ -1,0 +1,49 @@
+@import url(./style/layout.css);
+@import url(./style/header.css);
+@import url(./style/main.css);
+@import url(./style/strip.css);
+@import url(./style/blog.css);
+@import url(./style/translation.css);
+@import url(./style/footer.css);
+
+@import url("https://fonts.googleapis.com/css2?family=Marck+Script&display=swap");
+
+html {
+  box-sizing: border-box;
+}
+html {
+  scroll-behavior: smooth;
+}
+
+*,
+*::after,
+*::before {
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
+  /* border: 1px solid red; */
+}
+
+body {
+  line-height: 1.6;
+  font-size: 16px;
+}
+
+/* убираем масштабирование на iphone при нажатии на input */
+input,
+textarea,
+select {
+  font-family: "Montserrat", sans-serif;
+  line-height: 1.6;
+  font-size: 16px;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+button {
+  font-family: "Montserrat", sans-serif;
+  line-height: 1.6;
+  font-size: 16px;
+}
