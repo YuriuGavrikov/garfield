@@ -116,9 +116,15 @@
   width: 53px;
   border: 1px solid black;
 }
-@media (min-width: 910px) {
+@media (min-width: 900px) {
   .strip__likes__heart:hover {
     background: url(https://i.garfield-archive.ru/images/heart.png) 0px -44px no-repeat;
     color: #fff;
+  }
+}
+
+@media (max-width: 900px) {
+  .strip__footer__link {
+    font-size: 16px;
   }
 }
