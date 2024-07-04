@@ -116,7 +116,7 @@
   width: 53px;
   border: 1px solid black;
 }
-@media (min-width: 900px) {
+@media (min-width: 901px) {
   .strip__likes__heart:hover {
     background: url(https://i.garfield-archive.ru/images/heart.png) 0px -44px no-repeat;
     color: #fff;
