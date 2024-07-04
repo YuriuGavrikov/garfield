@@ -13,16 +13,35 @@
       <main class="main">
         <section class="strip">
           <div class="strip__header">
-            <div class="strip__language">
-              <span>ru</span>
-              <span>en</span>
-            </div>
+            <label class="strip__switch__language">
+              <input type="checkbox" />
+              <span class="slider round"></span>
+            </label>
+
             <div class="strip__date">
               <a href="#">«</a>
               <span>24/10/2018</span>
               <a href="#">»</a>
             </div>
-            <div class="strip__likes">like:1</div>
+            <div class="strip__likes">
+              <a class="strip__likes__heart" href="#">4</a>
+            </div>
+          </div>
+          <div class="strip__mini">
+            <a class="strip__mini__title" href="/20181023">мини-серия:</a>
+
+            <a
+              class="strip__mini__page"
+              href="/komiks-garfild-na-russkom-23-oktyabr-2018-god/"
+            >
+              1
+            </a>
+            <a
+              class="strip__mini__page"
+              href="/komiks-garfild-na-russkom-24-oktyabr-2018-god/"
+            >
+              2
+            </a>
           </div>
           <div class="strip__main">
             <a href="#" class="strip__main__link">
@@ -87,10 +106,27 @@
             <div class="translation__search__title">
               Поиск по текстам стрипов
             </div>
-            <input class="translation__search__input" />
+            <div>
+              <input
+                class="translation__search__input"
+                placeholder="Поиск..."
+                type="text"
+                value=""
+                name="s"
+              />
+              <button class="translation__search__btn">🔍</button>
+            </div>
 
-            <input type="checkbox" />
-            <input type="checkbox" />
+            <div class="translation__search__params">
+              <label class="checkbox" style="padding-right: 20px">
+                <input type="checkbox" name="opt_big" />
+                Воскресный (большой) стрип
+              </label>
+              <label class="checkbox">
+                <input type="checkbox" name="opt_rus" />
+                Уже переведённый стрип
+              </label>
+            </div>
           </div>
         </section>
       </main>
