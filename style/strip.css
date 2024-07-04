@@ -54,11 +54,6 @@
   color: #f55;
 }
 
-.no-touch .strip__likes__heart:hover {
-  background: url(https://i.garfield-archive.ru/images/heart.png) 0px -44px no-repeat;
-  color: #fff;
-}
-
 .strip__likes__heart-liked {
   background: url(https://i.garfield-archive.ru/images/heart.png) 0px 0px
     no-repeat;
@@ -120,4 +115,10 @@
   height: 30px;
   width: 53px;
   border: 1px solid black;
+}
+@media (min-width: 910px) {
+  .strip__likes__heart:hover {
+    background: url(https://i.garfield-archive.ru/images/heart.png) 0px -44px no-repeat;
+    color: #fff;
+  }
 }
