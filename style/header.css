@@ -12,6 +12,8 @@
   font-size: 30px;
 }
 .user-menu__calendar {
+  cursor: pointer;
+  position: relative;
 }
 .user-menu__login {
 }
