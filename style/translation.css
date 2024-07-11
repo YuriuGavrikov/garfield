@@ -43,6 +43,8 @@
 }
 
 .translation__proposal {
+}
+.translation__proposal__title {
   cursor: pointer;
   font-weight: bold;
   padding: 10px;
@@ -50,7 +52,19 @@
   background: #5d5;
   text-align: center;
 }
-
+.translation__proposal__popup {
+  display: none;
+  background-color: #fdd;
+  margin: 0 30px;
+  padding: 20px;
+  font-weight: bold;
+}
+.translation__proposal__popup a {
+  text-decoration: underline;
+}
+.open {
+  display: block;
+}
 .translation__info {
   line-height: 20px;
 }

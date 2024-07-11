@@ -71,6 +71,7 @@
 }
 
 .strip__main {
+  overflow: hidden;
   height: 258px;
 }
 .strip__main__link {
@@ -78,11 +79,12 @@
   height: 100%;
 }
 .strip__main__img {
-  width: 100%;
+  width: 900px;
   height: 100%;
   background-image: url(./../img/vk20181024.jpg);
   background-size: cover;
   background-position: 0px -30px;
+  background-repeat: no-repeat;
 }
 .strip__footer {
   display: flex;
