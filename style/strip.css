@@ -72,7 +72,7 @@
 
 .strip__main {
   overflow: hidden;
-  height: 255px;
+  height: 258px;
 }
 .strip__main__link {
   width: 100%;
@@ -87,6 +87,7 @@
 }
 .strip__main__img__rus {
   background-image: url(./../img/vk20181024.jpg);
+  background-position: center -30px;
 }
 .strip__main__img__eng {
   background-image: url(./../img/2018-10-24-b.jpg);
