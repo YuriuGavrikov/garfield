@@ -17,3 +17,15 @@ popUp.onclick = () => {
     .querySelector(".translation__proposal__popup")
     .classList.toggle("open");
 };
+
+let checkboxLanguage = document.querySelector(".checkbox__language");
+
+checkboxLanguage.addEventListener("change", function () {
+  console.log("qqq");
+  document
+    .querySelector(".strip__main__img")
+    .classList.toggle("strip__main__img__rus");
+  document
+    .querySelector(".strip__main__img")
+    .classList.toggle("strip__main__img__eng");
+});

@@ -72,7 +72,7 @@
 
 .strip__main {
   overflow: hidden;
-  height: 258px;
+  height: 255px;
 }
 .strip__main__link {
   width: 100%;
@@ -81,10 +81,15 @@
 .strip__main__img {
   width: 900px;
   height: 100%;
-  background-image: url(./../img/vk20181024.jpg);
   background-size: cover;
-  background-position: 0px -30px;
+  background-position: center;
   background-repeat: no-repeat;
+}
+.strip__main__img__rus {
+  background-image: url(./../img/vk20181024.jpg);
+}
+.strip__main__img__eng {
+  background-image: url(./../img/2018-10-24-b.jpg);
 }
 .strip__footer {
   display: flex;
