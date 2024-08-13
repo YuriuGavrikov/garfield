@@ -29,3 +29,7 @@ checkboxLanguage.addEventListener("change", function () {
     .querySelector(".strip__main__img")
     .classList.toggle("strip__main__img__eng");
 });
+
+fetch("https://garfield-archive.ru/api.php?id=20240804")
+  .then((response) => response.json())
+  .then((json) => console.log(json));
