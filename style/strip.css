@@ -86,11 +86,10 @@
   background-repeat: no-repeat;
 }
 .strip__main__img__rus {
-  background-image: url(./../img/vk20181024.jpg);
   background-position: center -30px;
 }
 .strip__main__img__eng {
-  background-image: url(./../img/2018-10-24-b.jpg);
+  background-position: center 0px;
 }
 .strip__footer {
   display: flex;
