@@ -20,7 +20,7 @@ const getData = async (currentDate) => {
         data.imgRus = `url(${json.strip.rus_pic_url})`;
         stripMainImg.style.backgroundImage = data.imgRus;
       } else {
-        data.imgRus = "url(/img/not-3.png)";
+        data.imgRus = "url(img/not-3.png)";
         stripMainImg.style.backgroundImage = data.imgRus;
       }
 
