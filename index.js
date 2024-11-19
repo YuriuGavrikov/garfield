@@ -1,13 +1,6 @@
 import { getJson, getTransCache, getOrdinalNumberDay } from "./get.js";
 
 let transCache = {};
-// getTransCache().then((data) => {
-//   transCache = data;
-// });
-
-setTimeout(() => {
-  console.log(transCache[2024]);
-}, 1000);
 
 //---------------------------------------------------------------------------------------
 const getLastDateString = () => {
@@ -78,31 +71,23 @@ document.addEventListener("DOMContentLoaded", () => {
         console.log(event);
       },
       getDays(day, date, HTMLElement, HTMLButtonElement, self) {
-        getTransCache()
-          .then((data) => {
-            transCache = data;
-          })
-          .then(() => {
-            switch (
-              transCache[date.slice(0, 4)][getOrdinalNumberDay(date) - 1]
-            ) {
-              case "0":
-                HTMLButtonElement.style.background = "#eee";
-                break;
-              case "1":
-                HTMLButtonElement.style.background = "#6E6";
-                break;
-              case "2":
-                HTMLButtonElement.style.background = "#ff7";
-                break;
-              case "3":
-                HTMLButtonElement.style.background = "#fff";
-                break;
-              case "4":
-                HTMLButtonElement.style.background = "#B2F66F";
-                break;
-            }
-          });
+        switch (transCache[date.slice(0, 4)][getOrdinalNumberDay(date) - 1]) {
+          case "0":
+            HTMLButtonElement.style.background = "#eee";
+            break;
+          case "1":
+            HTMLButtonElement.style.background = "#6E6";
+            break;
+          case "2":
+            HTMLButtonElement.style.background = "#ff7";
+            break;
+          case "3":
+            HTMLButtonElement.style.background = "#fff";
+            break;
+          case "4":
+            HTMLButtonElement.style.background = "#B2F66F";
+            break;
+        }
 
         HTMLButtonElement.style.border = "1px solid #555";
         HTMLButtonElement.style.margin = "0 2px";
@@ -118,9 +103,16 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   const calendar = new VanillaCalendar("#calendar", options);
-  calendar.init();
-  calendar.hide();
-  calendarWrapper.style.display = "none";
+
+  getTransCache()
+    .then((data) => {
+      transCache = data;
+    })
+    .then(() => {
+      calendar.init();
+      calendar.hide();
+      calendarWrapper.style.display = "none";
+    });
 
   document.addEventListener("click", (e) => {
     if (
