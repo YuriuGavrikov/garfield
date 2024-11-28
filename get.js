@@ -34,3 +34,11 @@ export const getOrdinalNumberDay = (date) => {
   let result = Math.floor(diff / oneDay);
   return result;
 };
+
+export const getLastDateString = () => {
+  const date = new Date();
+  const day = date.getDate() < 10 ? `0${date.getDate()}` : date.getDate();
+  const month = date.getMonth() + 1;
+  const year = date.getFullYear();
+  return `${year}-${month}-${day - 1}`;
+};

@@ -15,14 +15,6 @@
   cursor: pointer;
   position: relative;
 }
-.calendar__wrapper {
-  position: absolute;
-  top: 60px;
-  left: -166px;
-
-  border-radius: 12px;
-  border: 1px solid black;
-}
 
 .user-menu__login {
 }

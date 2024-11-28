@@ -1,21 +1,18 @@
-import { getJson, getTransCache, getOrdinalNumberDay } from "./get.js";
+import {
+  getJson,
+  getTransCache,
+  getOrdinalNumberDay,
+  getLastDateString,
+} from "./get.js";
 
 let transCache = {};
 
 //---------------------------------------------------------------------------------------
-const getLastDateString = () => {
-  const date = new Date();
-  const day = date.getDate() < 10 ? `0${date.getDate()}` : date.getDate();
-  const month = date.getMonth() + 1;
-  const year = date.getFullYear();
-  return `${year}-${month}-${day - 1}`;
+const strip = {
+  currentDate: "20181024",
+  imgRus: "url(img/not-3.png)",
+  imgEng: "url(img/not-3.png)",
 };
-
-//---------------------------------------------------------------------------------------
-let currentDate = "20181024";
-
-let stripImgRus = "url(img/not-3.png)";
-let stripImgEng = "url(img/not-3.png)";
 
 let stripMain = document.querySelector(".strip__main");
 let stripMainImg = document.querySelector(".strip__main__img");
@@ -39,6 +36,8 @@ let translationItemDescRus = document.querySelector(
 let translationItemDescEng = document.querySelector(
   ".translation__item__desc_eng"
 );
+
+let checkboxLanguage = document.querySelector(".checkbox__language");
 //---------------------------------------------------------------------------------------
 
 let calendarBtn = document.querySelector(".user-menu__calendar__btn");
@@ -59,15 +58,17 @@ document.addEventListener("DOMContentLoaded", () => {
     },
     actions: {
       clickDay(event, self) {
-        currentDate = self.selectedDates[0].split("-").join("");
-        calendar.hide();
-        calendarWrapper.style.display = "none";
-        changeView(getJson(currentDate));
-        stripDateInner.innerHTML = `${currentDate.slice(
+        strip.currentDate = self.selectedDates[0].split("-").join("");
+
+        calendarWrapper.style.animation = "closeCalendar 0.5s ease forwards";
+
+        changeView(getJson(strip.currentDate));
+        stripDateInner.innerHTML = `${strip.currentDate.slice(
           6,
           8
-        )}/${currentDate.slice(4, 6)}/${currentDate.slice(0, 4)}`;
-        console.log(currentDate);
+        )}/${strip.currentDate.slice(4, 6)}/${strip.currentDate.slice(0, 4)}`;
+
+        console.log(strip.currentDate);
         console.log(event);
       },
       getDays(day, date, HTMLElement, HTMLButtonElement, self) {
@@ -95,11 +96,11 @@ document.addEventListener("DOMContentLoaded", () => {
     },
   };
 
-  calendarBtn.onclick = () => {
+  stripDateInner.onclick = () => {
     console.log("open calendar");
 
     calendar.show();
-    calendarWrapper.style.display = "block";
+    calendarWrapper.style.animation = "openCalendar 0.5s ease forwards";
   };
 
   const calendar = new VanillaCalendar("#calendar", options);
@@ -110,21 +111,23 @@ document.addEventListener("DOMContentLoaded", () => {
     })
     .then(() => {
       calendar.init();
+
       calendar.hide();
-      calendarWrapper.style.display = "none";
     });
 
   document.addEventListener("click", (e) => {
     if (
-      !e.composedPath().includes(calendarBtn) &&
+      !e.composedPath().includes(stripDateInner) &&
       !e.composedPath().includes(calendarWrapper)
     ) {
-      calendar.hide();
-      calendarWrapper.style.display = "none";
+      if (calendarWrapper.style.animation) {
+        calendarWrapper.style.animation = "closeCalendar 0.5s ease forwards";
+      }
     }
   });
 });
 //---------------------------------------------------------------------------------------
+
 const changeView = (value) => {
   value.then((json) => {
     console.log(json);
@@ -132,16 +135,25 @@ const changeView = (value) => {
     if (json.rus_pic_url) {
       console.log("rus");
 
-      stripImgRus = `url(${json.rus_pic_url})`;
-      stripMainImg.style.backgroundImage = stripImgRus;
+      strip.imgRus = `url(${json.rus_pic_url})`;
+      stripMainImg.style.backgroundImage = strip.imgRus;
     } else {
-      stripImgRus = "url(img/not-3.png)";
-      stripMainImg.style.backgroundImage = stripImgRus;
+      strip.imgRus = [
+        `url(img/not-3.png)`,
+        `url(img/not-v2.png)`,
+        `url(${json.eng_pic_url})`,
+      ];
+      stripMainImg.style.backgroundImage = strip.imgRus;
+      stripMainImg.style.backgroundPosition = [
+        "center",
+        "-330px -644px",
+        "center",
+      ];
     }
 
     if (json.eng_pic_url) {
       console.log("eng");
-      stripImgEng = `url(${json.eng_pic_url})`;
+      strip.imgEng = `url(${json.eng_pic_url})`;
     }
 
     stripMain.style.height = `${json.height}px`;
@@ -171,28 +183,30 @@ const changeView = (value) => {
       6
     )}/${json.tr_dt.slice(0, 4)}`;
 
-    translationTitle.innerHTML = `Выпуск комикса за ${currentDate.slice(
+    translationTitle.innerHTML = `Выпуск комикса за ${strip.currentDate.slice(
       6,
       8
-    )}.${currentDate.slice(4, 6)}.${currentDate.slice(0, 4)} `;
+    )}.${strip.currentDate.slice(4, 6)}.${strip.currentDate.slice(0, 4)} `;
 
-    translationDesc.innerHTML = `Здесь представлен перевод старого комикса за ${currentDate.slice(
+    translationDesc.innerHTML = `Здесь представлен перевод старого комикса за ${strip.currentDate.slice(
       6,
       8
-    )}.${currentDate.slice(4, 6)}.${currentDate.slice(0, 4)} `;
+    )}.${strip.currentDate.slice(4, 6)}.${strip.currentDate.slice(0, 4)} `;
 
     translationItemDescEng.innerHTML = json.text_original;
     translationItemDescRus.innerHTML = json.text_rus;
+
+    checkboxLanguage.checked = false;
+    stripMainImg.classList.replace(
+      "strip__main__img__eng",
+      "strip__main__img__rus"
+    );
   });
 };
 
-changeView(getJson(currentDate));
-
-//---------------------------------------------------------------------------------------
+changeView(getJson(strip.currentDate));
 
 //--------------------------------------------------------------------------------------
-
-let checkboxLanguage = document.querySelector(".checkbox__language");
 
 checkboxLanguage.addEventListener("change", function () {
   const arrClasses = [];
@@ -201,18 +215,13 @@ checkboxLanguage.addEventListener("change", function () {
   console.log(arrClasses);
   console.log(arrClasses.includes("strip__main__img__rus"));
 
-  if (arrClasses.includes("strip__main__img__rus")) {
-    console.log(stripMainImg.style.backgroundImage);
-
-    stripMainImg.style.backgroundImage = stripImgEng;
+  if (checkboxLanguage.checked) {
+    stripMainImg.style.backgroundImage = strip.imgEng;
+  } else {
+    stripMainImg.style.backgroundImage = strip.imgRus;
   }
-  if (arrClasses.includes("strip__main__img__eng")) {
-    console.log(stripMainImg.style.backgroundImage);
-    stripMainImg.style.backgroundImage = stripImgRus;
-  }
-
-  stripMainImg.classList.toggle("strip__main__img__rus");
   stripMainImg.classList.toggle("strip__main__img__eng");
+  stripMainImg.classList.toggle("strip__main__img__rus");
 });
 
 //---------------------------------------------------------------------------------------
